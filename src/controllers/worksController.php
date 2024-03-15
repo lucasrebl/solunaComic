@@ -22,10 +22,14 @@ class worksController
         $category = $_POST["option"] ?? "";
         $episodes = $_POST["episodes"] ?? "";
         $tomes = $_POST["tome"] ?? "";
+        $searchTerm = $_POST['search'] ?? '';
         $WM = new worksManager();
         $FM = new filterManager();
         if (!empty($category) || !empty($cookie)) {
             $works = $WM->selectAllByFilters($category, $cookie, $episodes, $tomes);
+        }
+        if (!empty($searchTerm)) {
+            $works = $WM->searchByName($searchTerm);
         } else {
             $works = $WM->selectAll();
         }

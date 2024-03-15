@@ -51,6 +51,10 @@
 		</form>
 	</div>
 	<div class="works">
+		<form action="/oeuvres" method="post">
+			<input type="text" name="search" placeholder="Rechercher par nom...">
+			<button type="submit">Rechercher</button>
+		</form>
 		{% for work in Works %}
 		<a href="/resume?id={{ work.ID }}">
 			<div class="work">

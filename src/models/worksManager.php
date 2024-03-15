@@ -228,4 +228,33 @@ class worksManager
         DELETE FROM works WHERE idWorks = $id;");
         $result->execute();
     }
+
+    public function searchByName($name)
+    {
+        $result = $this->db->prepare("SELECT * FROM works WHERE nameWorks LIKE :name");
+        $result->bindValue(':name', '%' . $name . '%', PDO::PARAM_STR);
+        $result->execute();
+        $works = [];
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $work = new worksModel();
+            $work->setID($row['idWorks']);
+            $work->setName($row['nameWorks']);
+            $work->setStatus($row['status']);
+            $work->setImage($row['image']);
+            $work->setSummary($row['summary']);
+            $work->setNbEpisodes($row['numberOfEpisodes']);
+            $work->setNbSeason($row['numberOfSeason']);
+            $work->setNbTome($row['numberOfTome']);
+            $result4 = $this->db->prepare("SELECT worksCategory.idCategory, Category.nameCategory from worksCategory
+                    inner join Category on worksCategory.idCategory = Category.idCategory WHERE idWorks = $work->ID");
+                    $result4->execute();
+                    if ($result4->rowCount() > 0) {
+                        while ($row = $result4->fetch(PDO::FETCH_ASSOC)) {
+                            $work->setCategory($row['nameCategory']);
+                        }
+                    }
+            $works[] = $work;
+        }
+        return $works;
+    }
 }
