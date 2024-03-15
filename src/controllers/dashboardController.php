@@ -70,7 +70,7 @@ class dashboardController
             $user_age_update = $_POST['age'];
             $hashed_password_update = !empty($user_password_update) ? password_hash($user_password_update, PASSWORD_DEFAULT) : null;
             if (isset($_FILES["pictures"]) && $_FILES["pictures"]["error"] == UPLOAD_ERR_OK) {
-                $user_pictures_update = file_get_contents($_FILES["pictures"]["tmp_name"]);
+                $user_pictures_update = base64_encode(file_get_contents($_FILES["pictures"]["tmp_name"]));
                 updateUser($user_username_select, $user_username_update, $user_email_update, $hashed_password_update, $user_isAdmin_update, $user_age_update, $user_pictures_update);
             } else {
                 updateUser($user_username_select, $user_username_update, $user_email_update, $hashed_password_update, $user_isAdmin_update, $user_age_update);
@@ -106,7 +106,7 @@ class dashboardController
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         foreach ($result as &$user) {
             if ($user['pictures'] !== null) {
-                $user['pictures'] = base64_encode($user['pictures']);
+                //$user['pictures'] = base64_encode($user['pictures']);
             } else {
                 $user['pictures'] = '';
             }
@@ -131,7 +131,7 @@ class dashboardController
             $oeuvres_numberOfSeason_update = $_POST['numberOfSeason'];
             $oeuvres_numberOfTome_update = $_POST['numberOfTome'];
             if (isset($_FILES["image"]) && $_FILES["image"]["error"] == UPLOAD_ERR_OK) {
-                $oeuvres_image_update = file_get_contents($_FILES["image"]["tmp_name"]);
+                $oeuvres_image_update = base64_encode(file_get_contents($_FILES["image"]["tmp_name"]));
                 updateOeuvres($oeuvres_id_select, $oeuvres_nameWorks_update, $oeuvres_status_update, $oeuvres_summary_update, $oeuvres_numberOfEpisodes_update, $oeuvres_numberOfSeason_update, $oeuvres_numberOfTome_update, $oeuvres_image_update);
             } else {
                 updateOeuvres($oeuvres_id_select, $oeuvres_nameWorks_update, $oeuvres_status_update, $oeuvres_summary_update, $oeuvres_numberOfEpisodes_update, $oeuvres_numberOfSeason_update, $oeuvres_numberOfTome_update);
@@ -149,7 +149,7 @@ class dashboardController
                 echo "Tous les champs doivent être remplis.";
             } else {
                 if (isset($_FILES["image"]) && $_FILES["image"]["error"] == UPLOAD_ERR_OK) {
-                    $oeuvres_image_add = file_get_contents($_FILES["image"]["tmp_name"]);
+                    $oeuvres_image_add = base64_encode(file_get_contents($_FILES["image"]["tmp_name"]));
                     addOeuvres($oeuvres_nameWorks_add, $oeuvres_status_add, $oeuvres_summary_add, $oeuvres_numberOfEpisodes_add, $oeuvres_numberOfSeason_add, $oeuvres_numberOfTome_add, $oeuvres_image_add);
                 } else {
                     echo "Erreur lors du téléchargement de l'image.";
@@ -168,7 +168,7 @@ class dashboardController
         $result2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
         foreach ($result2 as &$user) {
             if ($user['image'] !== null) {
-                $user['image'] = base64_encode($user['image']);
+                //$user['image'] = base64_encode($user['image']);
             } else {
                 $user['image'] = '';
             }
