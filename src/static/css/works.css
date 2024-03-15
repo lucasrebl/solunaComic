@@ -30,6 +30,7 @@
 }
 
 .custom-fieldset {
+  min-width: 17.5%;
   margin: 0 25px 25px;
   padding: 20px;
   border: 1px solid rgb(255 255 255 / 50%);
@@ -224,7 +225,7 @@ body.night p {
   text-shadow: 0 0 2px black;
 }
 
-button.add,
+button,
 .custom-button {
   color: #FFFFFF;
   border: none;
@@ -238,7 +239,7 @@ button.add,
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: 0.3s;
   backdrop-filter: blur(10px);
-  margin: 2rem;
+  margin: 0.5rem;
   padding: 1rem;
 }
 
@@ -289,4 +290,23 @@ button.add i {
   box-shadow: inset 5px 5px 10px rgb(132 132 132 / 40%), inset 25px 25px 24px #ffffff00;
   /* margin: 1rem; */
   border: 1px solid white;
+}
+
+input, textarea, select {
+  border: 1px solid rgb(255 255 255 / 15%);
+  border-radius: 35px;
+  background-color: rgba(255, 255, 255, 0.65);
+  padding: 15px;
+  margin: 1%;
+}
+
+textarea {
+  max-width: 1450px;
+  max-height: 180px;
+}
+
+#add {
+  position: fixed;
+  right: 0;
+  
 }

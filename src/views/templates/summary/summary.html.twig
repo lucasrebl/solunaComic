@@ -13,7 +13,7 @@
 {% include "header.html.twig" %}
 <div class="container">
 	<div class="work">
-		<b class="modify"><i class="fa-solid fa-gear"></i></b>
+		<b class="modify" {% if not User %} hidden{% endif %}><i class="fa-solid fa-gear"></i></b>
 		<img src="data:image/png;base64,{{ Work.Image }}" />
 		<p id="name">{{ Work.Name }}</p>
 		<p id="summary">Résumé : {{ Work.Summary }}</p>

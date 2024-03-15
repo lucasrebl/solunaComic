@@ -88,12 +88,15 @@
 		</a>
 		{% endfor %}
 	</div>
-	<button id="add" class="add">
+	<button id="add" class="add" {% if not User %} hidden{% endif %}>
 		<i class="fas fa-plus"></i>
 		Ajouter une oeuvre</button>
 </div>
 <div class="form" style="display: none;">
-	<form action="/aWork" method="post">
+	<form action="/aWork" method="post"    style= "display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;">
 		<p for="name">Titre</p>
 		<input type="text" id="name" name="name" value=""></input>
 		<p for="summary">Résumé</p>
@@ -125,8 +128,10 @@
 					</option>
 				{% endfor %}
 			</select>
-			<input type="submit" value="Valider"></input>
+			<div class="align">
+			<button type="submit" value="Valider">Valider</button>
 	</form>
+	</div>
 	<button id="cancel">Annuler</button>
 </div>
 <script src="/static/js/works.js"></script>
