@@ -279,8 +279,17 @@ button.add i {
 .myFilter {
   background: rgb(255 255 255 / 50%);
   border-radius: 80px;
-  box-shadow: 10px 10px 10px rgb(132 132 132 / 40%), 20px 20px 19px #ffffff00;
+  box-shadow: 10px 10px 10px rgb(132 132 132 / 40%),
+    20px 20px 19px #ffffff00;
   margin: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.myFilter img {
+  max-width: 100px; 
+  margin: 0 15% 0 -30%;
 }
 
 .myFilter:hover,
