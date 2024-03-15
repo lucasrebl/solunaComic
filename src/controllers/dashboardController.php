@@ -86,7 +86,7 @@ class dashboardController
                 echo "Veuillez remplir les champs suivant: username, email, password, age";
             } else {
                 if (isset($_FILES["pictures"]) && $_FILES["pictures"]["error"] == UPLOAD_ERR_OK) {
-                    $user_image_add = file_get_contents($_FILES["pictures"]["tmp_name"]);
+                    $user_image_add = base64_encode(file_get_contents($_FILES["pictures"]["tmp_name"]));
                     $hashed_password_add = password_hash($user_password_add, PASSWORD_DEFAULT);
                     addUser($user_username_add, $user_email_add, $hashed_password_add, $user_age_add, $user_image_add);
                 } else {

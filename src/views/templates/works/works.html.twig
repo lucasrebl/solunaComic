@@ -22,6 +22,7 @@
 				Catégories :
 				{% for Category in Categories %}
 				<div class="myFilter">
+					<img src = "data:image/png;base64, {{ Category.pictures}}"/>
 					<p>
 						<input class="category" type="radio" name="option" value="{{ Category.ID }}"/>
 						{{ Category.Name }}
@@ -30,6 +31,7 @@
 				{% endfor %}
 				{% for tag in Tags %}
 				<div class="myFilter">
+					<img src = "data:image/svg+xml;base64,{{ tag.Image}}" alt="Image"/>
 					<p>
 						<input class="tag" type="checkbox" name="tag" value="{{ tag.ID }}" />
 						{{ tag.Name }}
@@ -101,12 +103,15 @@
 		</a>
 		{% endfor %}
 	</div>
-	<button id="add" class="add">
+	<button id="add" class="add" {% if not User %} hidden{% endif %}>
 		<i class="fas fa-plus"></i>
 		Ajouter une oeuvre</button>
 </div>
 <div class="form" style="display: none;">
-	<form action="/aWork" method="post">
+	<form action="/aWork" method="post"    style= "display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;">
 		<p for="name">Titre</p>
 		<input type="text" id="name" name="name" value=""></input>
 		<p for="summary">Résumé</p>
@@ -138,8 +143,10 @@
 					</option>
 				{% endfor %}
 			</select>
-			<input type="submit" value="Valider"></input>
+			<div class="align">
+			<button type="submit" value="Valider">Valider</button>
 	</form>
+	</div>
 	<button id="cancel">Annuler</button>
 </div>
 <script src="/static/js/works.js"></script>

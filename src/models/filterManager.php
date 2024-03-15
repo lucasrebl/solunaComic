@@ -12,10 +12,16 @@ class filterManager{
     $result->execute();
     if($result->rowCount() > 0){
         while ($row = $result->fetch(PDO::FETCH_ASSOC)){
-            $filter = new filterModel();
+            try {
+                $filter = new filterModel();
             $filter->setID($row['idCategory'] ?? $row['idTag']);
             $filter->setName($row['nameCategory'] ?? $row['nameTag']);
+            $filter->setImage(base64_encode($row['pictures']));
             $filters[] = $filter;
+            } catch(Exception $e) {
+
+            }
+            
         };
         return $filters;
     }
